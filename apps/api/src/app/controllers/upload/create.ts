@@ -21,7 +21,7 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
   const path = `./uploads/${filePath}`;
   await pump(file.file, fs.createWriteStream(path));
 
-  await prisma.file.create({
+  const data = await prisma.file.create({
     data: {
       name: file.filename,
       path: filePath,
@@ -29,5 +29,5 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
     },
   });
 
-  reply.code(200).send({ message: 'File uploaded' });
+  reply.code(200).send({ message: 'File uploaded', data });
 }
