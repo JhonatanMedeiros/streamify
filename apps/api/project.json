@@ -42,7 +42,7 @@
       "defaultConfiguration": "development",
       "options": {
         "buildTarget": "api:build",
-        "inspect": false
+        "inspect": "inspect"
       },
       "configurations": {
         "development": {

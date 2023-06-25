@@ -7,9 +7,85 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Movie {
+  id          String @id @default(uuid())
+  title       String
+  description String
+
+  file   File?   @relation(fields: [fileId], references: [id])
+  fileId String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Show {
+  id          String    @id @default(uuid())
+  title       String
+  description String
+  seassons    Season[]
+  episodes    Episode[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Season {
+  id          String @id @default(uuid())
+  title       String
+  description String
+
+  show   Show?   @relation(fields: [showId], references: [id])
+  showId String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Episode {
+  id          String @id @default(uuid())
+  title       String
+  description String
+
+  file   File   @relation(fields: [fileId], references: [id])
+  fileId String
+
+  show   Show?   @relation(fields: [showId], references: [id])
+  showId String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
 model File {
   id       String @id @default(uuid())
   name     String
   path     String
   mimetype String
+
+  episode Episode[]
+  user    User[]
+  movie   Movie[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
+
+model User {
+  id           String @id @default(uuid())
+  name         String
+  email        String @unique
+  passwordHash String
+
+  avatar File   @relation(fields: [fileId], references: [id])
+  fileId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// TODO: ADD ROLE WITH POSTGRESS
+// enum Role {
+//   USER
+//   ADMIN
+// }
