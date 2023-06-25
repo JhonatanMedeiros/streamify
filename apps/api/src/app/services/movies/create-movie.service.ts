@@ -2,17 +2,21 @@ import { PrismaClient } from '@prisma/client';
 
 export interface CreateMoviePros {
   title: string;
-  description: string;
+  overview: string;
+  releaseDateAt?: string;
+  adult?: boolean;
 }
 
 export async function createMovieService(
   prisma: PrismaClient,
-  { title, description }: CreateMoviePros
+  { title, overview, releaseDateAt, adult }: CreateMoviePros
 ) {
   await prisma.movie.create({
     data: {
       title,
-      description,
+      overview,
+      releaseDateAt,
+      adult,
     },
   });
 }

@@ -1,7 +1,10 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
-import { deleteShowService } from '../../services/delete-show.service';
+import { deleteTvShowService } from '../../services/tvshows/delete-tv-show.service';
 
-export async function deleteShow(request: FastifyRequest, reply: FastifyReply) {
+export async function deleteTvShow(
+  request: FastifyRequest,
+  reply: FastifyReply
+) {
   const {
     server: { prisma },
   } = request;
@@ -9,7 +12,7 @@ export async function deleteShow(request: FastifyRequest, reply: FastifyReply) {
   const params = request.params as { id: string };
 
   try {
-    await deleteShowService(prisma, params.id);
+    await deleteTvShowService(prisma, params.id);
 
     reply.status(200).send({ message: 'Show deleted success' });
   } catch {

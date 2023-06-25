@@ -1,5 +1,5 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
-import { deleteMovieService } from '../../services/delete-movie.service';
+import { deleteMovieService } from '../../services/movies/delete-movie.service';
 
 export async function deleteMovie(
   request: FastifyRequest,

@@ -3,12 +3,14 @@ import { PrismaClient } from '@prisma/client';
 export interface UpdateMoviePros {
   id: string;
   title: string;
-  description: string;
+  overview: string;
+  releaseDateAt?: string;
+  adult?: boolean;
 }
 
 export async function updateMovieService(
   prisma: PrismaClient,
-  { id, title, description }: UpdateMoviePros
+  { id, title, overview, releaseDateAt, adult }: UpdateMoviePros
 ) {
   await prisma.movie.update({
     where: {
@@ -16,7 +18,9 @@ export async function updateMovieService(
     },
     data: {
       title,
-      description,
+      overview,
+      releaseDateAt,
+      adult,
     },
   });
 }

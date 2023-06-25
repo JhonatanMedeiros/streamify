@@ -4,9 +4,23 @@ import S from 'fluent-json-schema';
 import fastifyEnv from '@fastify/env';
 import { app } from './app/app';
 
+const envToLogger = {
+  development: {
+    transport: {
+      target: 'pino-pretty',
+      options: {
+        translateTime: 'HH:MM:ss Z',
+        ignore: 'pid,hostname',
+      },
+    },
+  },
+  production: true,
+  test: false,
+};
+
 // Instantiate Fastify with some config
 const fastify = Fastify({
-  logger: true,
+  logger: envToLogger['development'] ?? true, // defaults to true if no entry matches in the map
 });
 
 const gracefulServer = GracefulServer(fastify.server);

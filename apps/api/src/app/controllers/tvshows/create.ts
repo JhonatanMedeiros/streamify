@@ -1,5 +1,5 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
-import { createShowService } from '../../services/create-show.service';
+import { createShowService } from '../../services/tvshows/create-show.service';
 
 export async function create(request: FastifyRequest, reply: FastifyReply) {
   const {

@@ -1,5 +1,5 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
-import { fetchShowsService } from '../../services/fetch-shows.service';
+import { fetchShowsService } from '../../services/tvshows/fetch-shows.service';
 
 export async function fetch(request: FastifyRequest, reply: FastifyReply) {
   const {

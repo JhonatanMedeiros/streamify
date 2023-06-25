@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 
-export interface CreateMoviePros {
+export interface CreateSeasonPros {
   name: string;
   overview: string;
   seasonNumber: number;
@@ -10,7 +10,7 @@ export interface CreateMoviePros {
 
 export async function createSeasonService(
   prisma: PrismaClient,
-  { name, overview, seasonNumber, airDateAt, tvShowId }: CreateMoviePros
+  { name, overview, seasonNumber, airDateAt, tvShowId }: CreateSeasonPros
 ) {
   await prisma.season.create({
     data: {

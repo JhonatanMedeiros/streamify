@@ -9,13 +9,19 @@ import { update } from '../controllers/movies/update';
 
 export const bodySchema = S.object()
   .prop('title', S.string().required())
-  .prop('description', S.string().required())
+  .prop('overview', S.string().required())
+  .prop('releaseDateAt', S.string())
+  .prop('adult', S.boolean())
   .valueOf();
 
+async function movieRouter(fastify: FastifyInstance) {
+  fastify.get('/', fetch);
+  fastify.get('/:id', getById);
+  fastify.post('/', { schema: { body: bodySchema } }, create);
+  fastify.patch('/:id', { schema: { body: bodySchema } }, update);
+  fastify.delete('/:id', deleteMovie);
+}
+
 export default async function (fastify: FastifyInstance) {
-  fastify.get('/movies', fetch);
-  fastify.get('/movies/:id', getById);
-  fastify.patch('/movies/:id', { schema: { body: bodySchema } }, update);
-  fastify.post('/movies', { schema: { body: bodySchema } }, create);
-  fastify.delete('/movies/:id', deleteMovie);
+  fastify.register(movieRouter, { prefix: '/movies' });
 }

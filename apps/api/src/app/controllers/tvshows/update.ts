@@ -1,5 +1,5 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
-import { updateShowService } from '../../services/update-show.service';
+import { updateShowService } from '../../services/tvshows/update-show.service';
 
 export async function update(request: FastifyRequest, reply: FastifyReply) {
   const {

@@ -19,6 +19,7 @@
     "fastify": "~4.13.0",
     "fastify-plugin": "~4.5.0",
     "fluent-json-schema": "^4.1.0",
+    "pino-pretty": "^10.0.0",
     "tslib": "^2.3.0"
   },
   "devDependencies": {

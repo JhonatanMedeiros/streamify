@@ -1,16 +1,14 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
-import { fetchSeasonService } from '../../services/fetch-season.service';
+import { fetchSeasonService } from '../../services/seasons/fetch-season.service';
 
 export async function fetch(request: FastifyRequest, reply: FastifyReply) {
   const {
     server: { prisma },
   } = request;
 
-  const { page: pageQuery } = request.query as { page: string };
+  const { tvShowId } = request.params as { tvShowId: string };
 
-  const page = pageQuery ? Number(pageQuery) : 1;
+  const { seasons } = await fetchSeasonService(prisma, tvShowId);
 
-  const { shows } = await fetchSeasonService(prisma, page);
-
-  reply.status(200).send({ shows });
+  reply.status(200).send({ seasons });
 }

@@ -48,8 +48,8 @@ model Season {
 
   episodes Episode[]
 
-  tvShow   TvShow? @relation(fields: [tvShowId], references: [id])
-  tvShowId String?
+  tvShow   TvShow @relation(fields: [tvShowId], references: [id])
+  tvShowId String
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -67,8 +67,8 @@ model Episode {
   season   Season? @relation(fields: [seasonId], references: [id])
   seasonId String?
 
-  file   File   @relation(fields: [fileId], references: [id])
-  fileId String
+  file   File?   @relation(fields: [fileId], references: [id])
+  fileId String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

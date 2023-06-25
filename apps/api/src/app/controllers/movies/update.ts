@@ -1,5 +1,8 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
-import { updateMovieService } from '../../services/update-movie.service';
+import {
+  UpdateMoviePros,
+  updateMovieService,
+} from '../../services/movies/update-movie.service';
 
 export async function update(request: FastifyRequest, reply: FastifyReply) {
   const {
@@ -7,12 +10,15 @@ export async function update(request: FastifyRequest, reply: FastifyReply) {
   } = request;
 
   const params = request.params as { id: string };
-  const { title, description } = request.body as any;
+  const { title, overview, releaseDateAt, adult } =
+    request.body as UpdateMoviePros;
 
   await updateMovieService(prisma, {
     id: params.id,
     title,
-    description,
+    overview,
+    releaseDateAt,
+    adult,
   });
 
   reply.status(201).send({ message: 'Movie updated success' });

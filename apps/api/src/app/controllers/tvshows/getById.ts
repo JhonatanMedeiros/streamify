@@ -1,5 +1,5 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
-import { getShowService } from '../../services/get-show.service';
+import { getShowService } from '../../services/tvshows/get-show.service';
 
 export async function getById(request: FastifyRequest, reply: FastifyReply) {
   const {
