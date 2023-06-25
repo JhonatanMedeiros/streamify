@@ -5,6 +5,7 @@ declare module 'fastify' {
       HOST: string;
       PORT: string;
       NODE_ENV: 'development' | 'production';
+      DATABASE_URL: string;
     };
   }
 }

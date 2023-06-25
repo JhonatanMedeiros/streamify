@@ -40,3 +40,4 @@ Thumbs.db
 
 /uploads
 .env
+/apps/api/prisma/dev.db

@@ -39,6 +39,7 @@ const start = async () => {
         )
         .prop('HOST', S.string().required())
         .prop('PORT', S.string().required())
+        .prop('DATABASE_URL', S.string().required())
         .valueOf(),
     });
 
