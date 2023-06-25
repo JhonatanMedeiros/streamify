@@ -6,11 +6,15 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
     server: { prisma },
   } = request;
 
-  const { title, description } = request.body as any;
+  const { name, overview, adult, firstAirDateAt, lastAirDateAt } =
+    request.body as any;
 
   await createShowService(prisma, {
-    title,
-    description,
+    name,
+    overview,
+    adult,
+    firstAirDateAt,
+    lastAirDateAt,
   });
 
   reply.status(201).send({ message: 'Show created success' });

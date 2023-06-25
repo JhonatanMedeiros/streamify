@@ -1,18 +1,24 @@
 import { PrismaClient } from '@prisma/client';
 
 export interface CreateMoviePros {
-  title: string;
-  description: string;
+  name: string;
+  overview: string;
+  adult: boolean;
+  firstAirDateAt: string;
+  lastAirDateAt: string;
 }
 
 export async function createShowService(
   prisma: PrismaClient,
-  { title, description }: CreateMoviePros
+  { name, overview, adult, firstAirDateAt, lastAirDateAt }: CreateMoviePros
 ) {
-  await prisma.show.create({
+  await prisma.tvShow.create({
     data: {
-      title,
-      description,
+      name,
+      overview,
+      adult,
+      firstAirDateAt,
+      lastAirDateAt,
     },
   });
 }

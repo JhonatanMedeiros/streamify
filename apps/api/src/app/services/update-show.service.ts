@@ -2,21 +2,34 @@ import { PrismaClient } from '@prisma/client';
 
 export interface UpdateShowServicePros {
   id: string;
-  title: string;
-  description: string;
+  name: string;
+  overview: string;
+  adult: boolean;
+  firstAirDateAt: string;
+  lastAirDateAt: string;
 }
 
 export async function updateShowService(
   prisma: PrismaClient,
-  { id, title, description }: UpdateShowServicePros
+  {
+    id,
+    name,
+    overview,
+    adult,
+    firstAirDateAt,
+    lastAirDateAt,
+  }: UpdateShowServicePros
 ) {
-  await prisma.show.update({
+  await prisma.tvShow.update({
     where: {
       id,
     },
     data: {
-      title,
-      description,
+      name,
+      overview,
+      firstAirDateAt,
+      lastAirDateAt,
+      adult,
     },
   });
 }

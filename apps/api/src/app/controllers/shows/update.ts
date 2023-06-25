@@ -7,12 +7,16 @@ export async function update(request: FastifyRequest, reply: FastifyReply) {
   } = request;
 
   const params = request.params as { id: string };
-  const { title, description } = request.body as any;
+  const { name, overview, adult, firstAirDateAt, lastAirDateAt } =
+    request.body as any;
 
   await updateShowService(prisma, {
     id: params.id,
-    title,
-    description,
+    name,
+    overview,
+    adult,
+    firstAirDateAt,
+    lastAirDateAt,
   });
 
   reply.status(201).send({ message: 'Show updated success' });

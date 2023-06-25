@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 
 export async function deleteShowService(prisma: PrismaClient, id: string) {
-  await prisma.show.delete({
+  await prisma.tvShow.delete({
     where: {
       id,
     },
