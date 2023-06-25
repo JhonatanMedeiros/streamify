@@ -14,7 +14,7 @@ export async function deleteMovie(
   try {
     await deleteMovieService(prisma, params.id);
 
-    reply.status(200).send({ message: 'Movie created success' });
+    reply.status(200).send({ message: 'Movie deleted success' });
   } catch {
     reply.unauthorized();
   }

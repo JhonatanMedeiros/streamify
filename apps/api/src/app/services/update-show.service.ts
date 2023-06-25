@@ -1,16 +1,16 @@
 import { PrismaClient } from '@prisma/client';
 
-export interface UpdateMoviePros {
+export interface UpdateShowServicePros {
   id: string;
   title: string;
   description: string;
 }
 
-export async function updateMovieService(
+export async function updateShowService(
   prisma: PrismaClient,
-  { id, title, description }: UpdateMoviePros
+  { id, title, description }: UpdateShowServicePros
 ) {
-  await prisma.movie.update({
+  await prisma.show.update({
     where: {
       id,
     },
